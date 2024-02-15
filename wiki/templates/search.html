@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Searches {% endblock %}
+
+{% block content %}
+
+    <div class = 'container'>
+        <div class = 'row justify-content-center'>
+            <div class = 'col-sm-6'>
+                <form class = 'form-group'>
+                    {% for search in searches %}
+                        {% if search.term != '' %}
+                        <a class = 'text-decoration-none text-white' id = 'search-anchor-container' href = '/get-page/{{ search.term }}'>
+                            <div class = 'bg-dark form-control fs-5 text-center' id = 'search-history-item-div'>
+                                <p class = '' id = 'search-history-item-p'> <b> {{ search.term }} </b> {{ search.time }} <a class = 'btn btn-outline-info' id = 'search-history-button' href = '/edit-searches'> Edit </a> </p>
+                            </div>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

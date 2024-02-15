@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Wiki 2.0 {% endblock %}
+
+{% block content %}
+
+<div class = 'container'>
+    <div class = 'p-5 row justify-content-center'>
+        <div class = 'col-6'>
+            <form id = 'search-pages-form' class = 'input-group input-group-lg' method = 'POST'>
+                {{ form.hidden_tag() }}
+                {% for field in form if field.widget.input_type != 'hidden' %}
+                    
+                {{ field( class = 'form-control rounded bg-dark text-center text-info' ) }}
+                    
+                {% endfor %}
+                <button class = 'input-group-append btn btn-outline-info text-white' action = '/'> Search </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class = 'container'>
+    <div class = 'row'>
+        <div id = 'results' class = 'text-center'>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

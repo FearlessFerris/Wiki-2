@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} New User {% endblock %}
+
+{% block content %}
+
+<div class = 'p-5 mt-5 container'>
+    <div class = 'row'>
+        <div class = 'text-center'>
+            <form class = 'form-group' method = 'POST'>
+                {{ form.hidden_tag() }}
+                <div class = 'col-8'>
+                    {% for field in form if field.widget.input_type != 'hidden' %}
+                    <p class = 'fs-5 text-dark text-end'> {{ field.label( class = 'text-white') }} {{ field( class = 'bg-dark border-info rounded text-center text-info' ) }} </p>
+                    {% endfor %}
+                </div>
+                <button class = 'btn btn-outline-info text-white btn-lg' action = '/new-user'> Create </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

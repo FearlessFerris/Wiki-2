@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %} Search Pages {% endblock %}
+
+{% block content %} 
+
+<div class = 'container mt-5'>
+    <div class = 'mt-5 row justify-content-center' id = 'search-container'>
+        <div class = 'col-md-6'>
+            <form class = 'input-group input-group-lg' method = 'POST'>
+                {{ form.hidden_tag() }}
+                {% for field in form if field.widget.input_type != 'hidden' %}
+
+                    {{ field( class = 'form-control rounded bg-dark text-center text-info' ) }}
+
+                {% endfor %}
+                <button class = 'input-group-append btn btn-outline-info text-light' action = '/search-pages'> Search </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class = 'container'>
+    <div class = 'row'>
+        <div id = 'results' class = 'p-5 text-center'>
+            <form class = 'form-group'>
+                {% for page in pages %}
+                    <a class = 'text-decoration-none' href = '/get-page/{{ page.title }}' >
+                        <div id = 'info' class = 'form-control border border-info fs-5 text-center text-white bg-dark'>
+                            <p> <h1 class = 'text-center'> {{ page.title }} <img src = "{{ page['thumbnail'][ 'url' ] }}" width = '75px' alt = ''> </h1> {{ page.description }} </p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
